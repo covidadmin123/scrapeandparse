@@ -1,0 +1,52 @@
+# Streamlit configuration file
+# ----------------------------
+#
+# This file defines settings for the Streamlit server to allow large file
+# uploads and larger websocket messages. Without these settings, the
+# default limits in Streamlit restrict uploads to 200 MB and the maximum
+# message size to 200 MB, which can cause errors when handling very
+# large log files. Adjust these values to suit your environment and
+# hardware capabilities.
+#
+# * `maxUploadSize` controls the maximum size (in megabytes) for file
+#   uploads via `st.file_uploader`. Set this high enough to accommodate
+#   the largest expected upload. Here it is set to 4000 MB (approx 4 GB).
+#
+# * `maxMessageSize` controls the maximum size (in megabytes) of
+#   individual messages sent between the server and the browser. A
+#   moderately high value (500 MB) is chosen to allow large data
+#   transfers while still encouraging the UI to truncate very large
+#   results. The UI code also limits the number of rows displayed to
+#   avoid sending huge tables to the browser.
+# Streamlit configuration file
+# ---------------------------
+
+# This file defines settings for the Streamlit server to allow large file
+# uploads and larger websocket messages. Without these settings, the
+# default limits in Streamlit restrict uploads to 200 MB and the maximum
+# message size to 200 MB, which can cause errors when handling very
+# large log files. Adjust these values to suit your environment and
+# hardware capabilities.
+
+# * ``maxUploadSize`` controls the maximum size (in megabytes) for file
+#   uploads via ``st.file_uploader``. Set this high enough to accommodate
+#   the largest expected upload. Here it is set to 4000 MB (approx 4 GB).
+
+# * ``maxMessageSize`` controls the maximum size (in megabytes) of
+#   individual messages sent between the server and the browser. A
+#   moderately high value (500 MB) is chosen to allow large data
+#   transfers while still encouraging the UI to truncate very large
+#   results. The UI code also limits the number of rows displayed to
+#   avoid sending huge tables to the browser.
+
+[server]
+# Allow uploads up to 4 GB. Adjust this if your files are larger or
+# smaller. Note that very large uploads can consume a lot of memory
+# during processing.
+maxUploadSize = 4000
+
+# Increase the maximum size of messages sent over the websocket. The
+# default is 200 MB. A higher value prevents errors when sending
+# moderately large datasets. Combined with truncation logic in the UI
+# it avoids sending multi-gigabyte payloads.
+maxMessageSize = 500
